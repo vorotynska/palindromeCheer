@@ -1,5 +1,7 @@
 let answer = parseInt(prompt("Please enter the number you would like to FizzBuzz up to: "));
 
+// Palindrome Checker
+
 function palindrome(str) {
     let regexp = /[\W_]/g;
     let lowStr = str.replace(regexp, '').toLowerCase();
@@ -9,6 +11,7 @@ function palindrome(str) {
 };
 console.log(palindrome('A man, a plan, a canal. Panama.'))
 
+//Roman Numeral Converter
 
 function convertToRoman(num) {
     let conv = {
@@ -39,6 +42,8 @@ function convertToRoman(num) {
 
 console.log(convertToRoman(83));
 
+// Caesars Number Validator
+
 function rot13(str) {
     const shift = 13;
     const alphabet = 'abcdefghijklmnopqrstuvwxyz';
@@ -51,12 +56,27 @@ function rot13(str) {
         });
     let decipher = str.toLowerCase().split('')
         .map((symbol) => {
-            const index = cipherAlphabet.indexOf(symbol);
-            return plainAlphabet[index];
+            for (let i = 0; i < str.length;) {
+                if (cipherAlphabet.indexOf(symbol) == -1) {
+                    return symbol;
+                } else {
+                    const index = cipherAlphabet.indexOf(symbol);
+                    return plainAlphabet[index];
+                }
+            }
         })
         .join('')
         .toUpperCase();
     return decipher;
 };
+
+//Telephone Number validator
+
+function telephoneCheck(str) {
+    let regex = /^(1\s?)?(\(\d{3}\)|\d{3})[\s\-]?\d{3}[\s\-]?\d{4}$/;
+    return regex.test(str);
+}
+
+console.log(telephoneCheck("1 (555)-555-5555"));
 
 console.log(rot13("SERR PBQR PNZC"));
