@@ -38,3 +38,25 @@ function convertToRoman(num) {
 }
 
 console.log(convertToRoman(83));
+
+function rot13(str) {
+    const shift = 13;
+    const alphabet = 'abcdefghijklmnopqrstuvwxyz';
+    let plainAlphabet = alphabet.split('');
+    let cipherAlphabet = plainAlphabet
+        .map((_symbol, index) => {
+            let newIndex = (index + shift) %
+                plainAlphabet.length;
+            return plainAlphabet[newIndex];
+        });
+    let decipher = str.toLowerCase().split('')
+        .map((symbol) => {
+            const index = cipherAlphabet.indexOf(symbol);
+            return plainAlphabet[index];
+        })
+        .join('')
+        .toUpperCase();
+    return decipher;
+};
+
+console.log(rot13("SERR PBQR PNZC"));
